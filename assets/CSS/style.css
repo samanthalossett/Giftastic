@@ -1,3 +1,12 @@
+.title {
+    text-align: center;
+    font-size: 30;
+    color: pink;
+}
 button {
-    color: blue;
+    color: pink;
+    background-color: teal;
+}
+#add-user-input {
+    color: red;
 }
