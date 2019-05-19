@@ -16,6 +16,7 @@ $(document).ready(function () {       //"now start loading javasctipt and JQ"//
                 console.log("buttons clicked is working");
                 var extractedButtons = $(this).val(); // "this" function //
                 console.log("extracted buttons var is working:" + " " + extractedButtons);
+                ///////////////////////////
                 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + extractedButtons + "&api_key=ZzkFtzViT9yOr6IEBOCtJxV7nBoghEVi&limit=10";
                 $.ajax({
                     url: queryURL,
@@ -23,9 +24,13 @@ $(document).ready(function () {       //"now start loading javasctipt and JQ"//
                 }).then(function (response) {
                     console.log(response);
                     $("#added").empty();
-                    for (var j = 0; j < response.data.length; j++) {   // *HELP* this is only working when page loads. Doesnt work when a button is added or after//
-                        $("#added").append(`<img class=images src= ${response.data[j].images.downsized.url}>`);
-
+                    for (var j = 0; j < response.data.length; j++) {
+                        $("#added").append(`<img class=images id=gif src= ${response.data[j].images.downsized_still.url}>`); //still//
+                        $("#gif").click(function(){
+                            console.log("the GIF on-click IS WORKING except......");
+                            // *HELP* im trying to get the still image to turn active when clicked *NOT WORKING* ////
+                            $("#added").append(`<img class=images id=gif src= ${response.data[j].images.downsized.url}>`); //not still //
+                        })
                     }
                 })
             })
@@ -39,7 +44,6 @@ $(document).ready(function () {       //"now start loading javasctipt and JQ"//
         var whatUserTypes = $("#user-input").val().trim();
         console.log("value of whatUserTypes is working:" + " " + whatUserTypes);
         topics.push(whatUserTypes);
-        //SOMETHING RIGHT HERE MAYBE??? I THINK THIS IS WHERE THE PROBLEM LIES//
         $("#user-input").val(" ");
         appendButtons();
         $("#added").empty();
@@ -47,5 +51,4 @@ $(document).ready(function () {       //"now start loading javasctipt and JQ"//
 
 });
 
-//make the still frame happen when clicked on//
-//if / then statement w/ an on click //
+
