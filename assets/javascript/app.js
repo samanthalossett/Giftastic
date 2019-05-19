@@ -28,8 +28,10 @@ $(document).ready(function () {       //"now start loading javasctipt and JQ"//
                         $("#added").append(`<img class=images id=gif src= ${response.data[j].images.downsized_still.url}>`); //still//
                         $("#gif").click(function(){
                             console.log("the GIF on-click IS WORKING except......");
+                            //////// **HERE****
                             // *HELP* im trying to get the still image to turn active when clicked *NOT WORKING* ////
                             $("#added").append(`<img class=images id=gif src= ${response.data[j].images.downsized.url}>`); //not still //
+                            //////////  **HERe****
                         })
                     }
                 })
