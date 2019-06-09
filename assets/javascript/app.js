@@ -12,7 +12,7 @@ $(document).ready(function () {       //"now start loading javasctipt and JQ"//
             ////////////////////////////
             $(".buttons").on("click", function (event) {   // this is linking the clicked buttons to the GIF API, then clears//
                 event.preventDefault();
-                $("#added").empty();
+                // $("#added").empty();
                 console.log("buttons clicked is working");
                 var extractedButtons = $(this).val(); // "this" function //
                 console.log("extracted buttons var is working:" + " " + extractedButtons);
@@ -30,7 +30,8 @@ $(document).ready(function () {       //"now start loading javasctipt and JQ"//
                             console.log("the GIF on-click IS WORKING except......");
                             //////// **HERE****
                             // *HELP* im trying to get the still image to turn active when clicked *NOT WORKING* ////
-                            $("#added").append(`<img class=images id=gif src= ${response.data[j].images.downsized.url}>`); //not still //
+                             $("#added").append(`<img class=images id=gif src= ${response.data[j].images.downsized.url}>`); //not still //
+                            
                             //////////  **HERe****
                         })
                     }
