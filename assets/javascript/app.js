@@ -25,21 +25,35 @@ $(document).ready(function () {       //"now start loading javasctipt and JQ"//
                     console.log(response);
                     $("#added").empty();
                     for (var j = 0; j < response.data.length; j++) {
-                        $("#added").append(`<img class=images id=gif src= ${response.data[j].images.downsized_still.url}>`); //still//
-                        $("#gif").click(function(){
-                            console.log("the GIF on-click IS WORKING except......");
-                            //////// **HERE****
-                            // *HELP* im trying to get the still image to turn active when clicked *NOT WORKING* ////
-                             $("#added").append(`<img class=images id=gif src= ${response.data[j].images.downsized.url}>`); //not still //
-                            
-                            //////////  **HERe****
-                        })
+                        var still=response.data[j].images.downsized_still.url;
+                        var animated=response.data[j].images.downsized.url;
+                        var gifImage= $("<img>");
+                        gifImage.addClass("images");
+                        gifImage.attr("data-still", still);
+                        gifImage.attr("data-animated", animated);
+                        gifImage.attr("src", still);
+                        gifImage.attr("state", "still")
+                        $("#added").append(gifImage);
+                     
                     }
                 })
             })
         }
     }
     appendButtons();
+
+    $(document).on("click", ".images", function(){
+                console.log("onlick images is working");
+                var state=$(this).attr("state")
+                if (state=== "still"){
+                    $(this).attr("state", "animated");
+                    $(this).attr("src", $(this).attr("data-animated"));
+
+                }else {
+                    $(this).attr("state", "still");
+                    $(this).attr("src", $(this).attr("data-still"));
+                }
+    })
 
     $("#add-user-input").on("click", function (event) {    //this event makes users input into a button in the existing array, then clears text box //
         event.preventDefault();
